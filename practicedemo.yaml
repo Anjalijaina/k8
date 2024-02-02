@@ -1,0 +1,39 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: cluster 
+  region: ap-southeast-1
+
+vpc:
+  id: vpc-0a96314e9baaad63d
+  cidr: "172.31.0.0/16"
+  subnets:
+    public:
+      public-one:
+        id: subnet-064489770e8148e7b
+      public-two:
+        id: subnet-0d7dfadf267791eed
+      public-three:
+        id: subnet-095885b5a2ee129bc
+      public-four:
+        id: subnet-0b99daecf6f81ec42
+    
+
+nodeGroups:
+  - name: ng-1
+    instanceType: t3.medium
+    desiredCapacity: 1
+    subnets:
+      - public-one
+  - name: ng-2
+    instanceType: t3.medium
+    desiredCapacity: 1
+    subnets:
+      - public-three
+  - name: ng-3
+    instanceType: t3.medium
+    desiredCapacity: 1
+    subnets:
+      - public-two
